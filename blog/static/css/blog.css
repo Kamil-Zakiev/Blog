@@ -1,0 +1,48 @@
+body 
+{
+	padding-left: 15px	
+}
+/*----------------------------------------------*/
+
+h1 a
+{
+	color: #098616
+	font-family: Florence, cursive;
+}
+
+.page-header
+{
+	background-color: #200ee8;
+	margin-top: -10;
+	padding: 20px 
+}
+
+.date
+{
+	float: right;
+	color: #828282;
+	
+}
+
+.save
+{
+	float: right;
+}
+
+.post-form textarea, .post-form input
+{
+	width: 100%;
+}
+
+.post 
+{
+	margin-bottom: 70px;
+	font-size: 14pt;
+	font-family: Florence, cursive;
+}
+
+.post h1 a, .post h1 a:visitrd
+{
+	color: #f50c23;
+}
+
