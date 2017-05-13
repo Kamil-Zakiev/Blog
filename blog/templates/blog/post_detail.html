@@ -8,8 +8,15 @@
 		</div>
 		{% endif %}
 		<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
-		<span class="glyphicon glyphicon-pencil"> Добавить пост</span></a>
-			<h1>{{ post.title }}</h1>
-			<p>{{ post.text|linebreaksbr }}</p>
+		<span class="glyphicon glyphicon-refresh"> Редактировать пост </span></a>
+		<h1 class="tit">{{ post.title }}</h1>
+		<p>{{ post.text|linebreaksbr }}</p>
+			
+		<form method="POST" class="post-form">
+			{% csrf_token %}
+			{{ form.as_p}}
+			<button type="submit" class="btn btn-success glyphicon glyphicon-send">Комментировать</button>
+		</form>
+
 		</div>
 {% endblock %}

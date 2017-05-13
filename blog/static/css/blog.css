@@ -12,9 +12,15 @@ h1 a
 
 .page-header
 {
-	background-color: #200ee8;
+	background-color: #ffccff;
 	margin-top: -10;
 	padding: 20px 
+}
+
+.tit
+{
+	background-color: #eee6ff;
+	padding: 20px
 }
 
 .date
