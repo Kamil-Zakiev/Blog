@@ -11,7 +11,18 @@
 		<span class="glyphicon glyphicon-refresh"> Редактировать пост </span></a>
 		<h1 class="tit">{{ post.title }}</h1>
 		<p>{{ post.text|linebreaksbr }}</p>
-			
+		
+		<!--       комменты         -->
+		{% for comment in comments %}
+		<div class="comment">
+			<div class="date">
+				<p> {{comment.published_date}}</p>
+			</div>
+			<p>{{comment.text|linebreaksbr}}</p>
+		</div>
+		{% endfor %}
+		
+		<!--     форма для нового коммента       -->
 		<form method="POST" class="post-form">
 			{% csrf_token %}
 			{{ form.as_p}}

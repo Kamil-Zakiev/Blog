@@ -12,10 +12,12 @@ def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
-def post_detail(request, pk):
+def post_detail(request, pk): #возвращает инфу о посте
 	post = get_object_or_404(Post, pk=pk)
-	if request.method == "POST":
+	
+	if request.method == "POST":#добавление коммента
 		form = CommentForm(request.POST)
+		
 		if form.is_valid():
 			comment = form.save(commit=False)
 			comment.author = request.user
@@ -23,11 +25,12 @@ def post_detail(request, pk):
 			comment.post = post
 			comment.save()
 		return redirect('post_detail', pk=post.pk)
+	else:
+		form = CommentForm()
+		comments = Comment.objects.filter(post__lte = post).order_by('published_date')  		
+		return render(request, 'blog/post_detail.html', {'post': post, 'form': form, 'comments': comments})
 		
-	form = CommentForm()
-	return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
-	
-def post_new(request):
+def post_new(request): #возвращает форму нового поста
 	if request.method == "POST":
 		form=PostForm(request.POST)
 		if form.is_valid():
@@ -40,7 +43,7 @@ def post_new(request):
 		form = PostForm()
 	return render(request, 'blog/post_edit.html', {'form': form})
 	
-def post_edit(request, pk):
+def post_edit(request, pk): #возвращает форму редактирования
 	post = get_object_or_404(Post, pk=pk)
 	if request.method == "POST":
 		form = PostForm(request.POST, instance = post)
